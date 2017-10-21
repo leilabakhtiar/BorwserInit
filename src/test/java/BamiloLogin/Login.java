@@ -8,6 +8,7 @@ import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.testng.Assert;
+import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
@@ -36,6 +37,12 @@ public class Login {
             driver = new FirefoxDriver();
         }
     }
+    
+
+    @AfterTest
+    public void testTeardown() {
+        driver.quit();
+    }
 
     @Test(priority = 1)
     public void Register() throws InterruptedException {
@@ -46,6 +53,7 @@ public class Login {
         Thread.sleep(15000);
 
         WebElement close = driver.findElement(By.xpath("/html/body/div[2]/div/div[1]/div/i"));
+
         close.click();
 
         WebElement myProfile = driver.findElement(By.xpath("/html/body/div[2]/header/div[1]/div[2]/div[2]/div[1]/a/span[2]"));
